@@ -27,6 +27,8 @@ if (myForm) {
             //We then reset the form
             $("#myForm").trigger('reset');
             /*  you can also do this by just clearing the text input as shown below
+                if you want to reset all fields, use the reset example above
+                if you want to just clear certain form fields you can use the example below
                 $("#text_input").val('');
             */
 
