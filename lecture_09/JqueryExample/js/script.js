@@ -15,7 +15,7 @@ if (myForm) {
             //we hide the error div in case it's visible
             $("#error").hide();
 
-            //We create the list item element
+            //We create the list item element variable
             const li = `<li> ${textInput.value} </li>`
 
             //we add the li element created above to the UL
