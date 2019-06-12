@@ -16,7 +16,7 @@ router.get('/:id', async (req, res) => {
 
 router.get('/genre/:genre', async (req, res) => {
   console.log(req.params.genre);
-  //Todo call bandData.searchBandByGenre res.json the result.
+  //1. Todo call bandData.searchBandByGenre res.json the result.
 });
 
 router.get('/', async (req, res) => {
@@ -28,37 +28,29 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post('/search/bandmember', async (req, res) => {
-  console.log(req.body);
-  /*TODO: get the req.body and then
+/*2. TODO: router.post to url '/search/bandmember'  get the req.body and then
 	 1. Check the fields.  if req.body.name is present, then call bandDatasearchBandMember(req.body.name)
 	 2. If the name field is not present then check if firstName and lastName are present in the body
-		req.body.firstName, req.body.LastName and If so, then call bandData.searchBandMemberFullName(req.body.firstName, req.bodylastName)
+    req.body.firstName, req.body.LastName and If so, then call bandData.searchBandMemberFullName(req.body.firstName, req.bodylastName)
+    
+          if (req.body.name) {
+            console.log(req.body.name);
+            //call bandData.searchBandMember(req.body.name)
+          } else if (req.body.firstName && req.body.lastName) {
+            console.log(req.body.firstName + ' ' + req.body.lastName);
+            //call bandData.searchBandMemberFullName(req.body.firstName, req.bodylastName);
+         }
 	
 	*/
 
-  if (req.body.name) {
-    console.log(req.body.name);
-    //call bandData.searchBandMember(req.body.name)
-  } else if (req.body.firstName && req.body.lastName) {
-    console.log(req.body.firstName + ' ' + req.body.lastName);
-    //call bandData.searchBandMemberFullName(req.body.firstName, req.bodylastName);
-  }
-});
-
-router.post('/search/bandName', async (req, res) => {
-  console.log(req.body);
-  /*TODO: get the req.body and then
+/*3. TODO: router.post to url '/search/bandName' to  get the req.body and then
 		let bandName = req.body.bandName
 		
 		bandData.searchBandByName(bandName)
 	  */
-});
 
-router.post('/search/year', async (req, res) => {
-  console.log(req.body);
-  /*TODO:
-		you will use this route to search by year on any of the functions,
+/*4. TODO:
+    router.post to url '/search/year' you will use this route to search by year on any of the functions,
 		your body should include a field named yearRange you like, the values can be "before", "onOrBefore", "after", "onOrAfter", "exact"
 		then you use an if statement to check that field, and then call the appropriate function
 		like so:
@@ -74,32 +66,25 @@ router.post('/search/year', async (req, res) => {
 
 		
 		*/
-});
 
-router.post('/:id/bandmembers', async (req, res) => {
-  console.log(req.body);
-  /*TODO: get the req.body and then
+/*5. TODO: router.post to url '/:id/bandmembers', get the req.body and then
 		  let bandId = req.params.id
 		  let firstName = req.body.firstName
 		  let lastName =req.body.lastName
 		  bandData.addBandMember(bandId, firstName, lastName)
 		*/
-});
 
-router.delete('/:id/bandmembers', async (req, res) => {
-  console.log(req.params.id);
-  console.log(req.body);
-  /*TODO: get the req.body and then
+/*6. TODO: router.delete to url '/:id/bandmembers' 
+   get the req.body and then
 			let bandId = req.params.id
 			let firstName = req.body.firstName
 			let lastName =req.body.lastName
 			bandData.removeBandMember(bandId, firstName, lastName)
 		  */
-});
 
 router.delete('/:id', async (req, res) => {
   console.log(req.params.id);
-  //TODO call the remove  band data function
+  //7. TODO call the remove  band data function
 });
 
 module.exports = router;
