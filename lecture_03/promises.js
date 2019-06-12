@@ -22,55 +22,49 @@ const promise = new Promise(function(resolve, reject) {
 */
 
 //If weather is true, resolve the promise returning the data dateDetails, else return an error object with data Bad weather, so no Date.
-const weather = true
-const date    = new Promise(function(resolve, reject) {
+const weather = true;
+const date = new Promise(function(resolve, reject) {
   if (weather) {
     const dateDetails = {
-      name:     'Cubana Restaurant',
+      name: 'Cubana Restaurant',
       location: '55th Street',
-      table:    5
+      table: 5
     };
 
-    resolve(dateDetails)
+    resolve(dateDetails);
   } else {
-    reject(new Error('Bad weather, so no Date'))
+    reject(new Error('Bad weather, so no Date'));
   }
 });
-
 
 /* Using Promises
 Using a promise that has been created is relatively straightforward; we chain .then() and .catch() to our Promise like so */
 
-/* 
 date
   .then(function(done) {
     // the content from the resolve() is here
+    console.log(done);
   })
   .catch(function(error) {
     // the info from the reject() is here
   });
-*/
-
-
 
 //Using the promise we created above, let's take this a step further:
 
 const myDate1 = function() {
-    date
-      .then(function(done) {
-        console.log('We are going on a date!')
-        console.log(done)
-      })
-      .catch(function(error) {
-          console.log(error.message)
-      })
-  }
-  
-  myDate1();
+  date
+    .then(function(done) {
+      console.log('We are going on a date!');
+      console.log(done);
+    })
+    .catch(function(error) {
+      console.log(error.message);
+    });
+};
 
-  //Since the weather value is true, we call mydate() and our console logs:
+myDate1();
 
-
+//Since the weather value is true, we call mydate() and our console logs:
 
 /* Chaining Promises
 Sometimes we may need to execute two or more asynchronous operations based on the result of preceding promises. 
@@ -78,37 +72,34 @@ In this case, promises are chained. Still using our created promise, let’s ord
 
 So we create another promise: 
 
-const orderUber = function(dateDetails) {
-    return new Promise(function(resolve, reject) {
-      const message = `Get me an Uber ASAP to ${dateDetails.location}, we are going on a date!`;
-  
-      resolve(message)
-    });
-  }
-
 */
 
+// const orderUber1 = function(dateDetails) {
+//   return new Promise(function(resolve, reject) {
+//     const message = `Get me an Uber ASAP to ${dateDetails.location}, we are going on a date!`;
+
+//     resolve(message);
+//   });
+// };
 
 //we can shorten the promise to
-  const orderUber = function(dateDetails) {
-    const message = `Get me an Uber ASAP to ${dateDetails.location}, we are going on a date!`;
-    return Promise.resolve(message)
-  } 
+const orderUber = function(dateDetails) {
+  const message = `Get me an Uber ASAP to ${dateDetails.location}, we are going on a date!`;
+  return Promise.resolve(message);
+};
 
+//We chain this promise to our earlier date operation like so:
+const myDate2 = function() {
+  date
+    .then(orderUber)
+    .then(function(done) {
+      console.log(done);
+    })
+    .catch(function(error) {
+      console.log(error.message);
+    });
+};
 
-  //We chain this promise to our earlier date operation like so:
-  const myDate2 = function() {
-    date
-      .then(orderUber)
-      .then(function(done) {
-        console.log(done);
-      })
-      .catch(function(error) {
-        console.log(error.message)
-      })
-  }
-  
-  myDate2();
+myDate2();
 
-  //Since our weather is true, the output to our console is: Get me an Uber ASAP to 55th Street, we are going on a date!
-  
+//Since our weather is true, the output to our console is: Get me an Uber ASAP to 55th Street, we are going on a date!
